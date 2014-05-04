@@ -110,8 +110,10 @@
 ;;; font-lock
 (defun plantuml-init ()
   "Initialize the keywords or builtins from the cmdline language output"
-  (unless (file-exists-p plantuml-jar-path)
-    (error "Could not find plantuml.jar at %s" plantuml-jar-path))
+  (unless (and plantuml-jar-path (file-exists-p plantuml-jar-path))
+    (error "Could not find plantuml.jar at %s" (if plantuml-jar-path
+                                                   (format "at %s" plantuml-jar-path)
+                                                 ". Did you set `plantuml-jar-path'?")))
   (with-temp-buffer
     (shell-command (concat "java -jar "
                            (shell-quote-argument plantuml-jar-path)
