@@ -119,7 +119,7 @@
                            (shell-quote-argument plantuml-jar-path)
                            " -language") (current-buffer))
     (goto-char (point-min))
-    (let ((found (search-forward ";" nil nil))
+    (let ((found (search-forward ";" nil t))
           (word "")
           (count 0)
           (pos 0))
@@ -152,7 +152,7 @@
                              (buffer-substring-no-properties pos (point)))))))
             ;;                  ((string= word "skinparameter")
             ;;                  ((string= word "color")))
-            (setq found (search-forward ";" nil nil)))))))
+            (setq found (search-forward ";" nil t)))))))
 
 (unless plantuml-kwdList
   (plantuml-init)
