@@ -12,7 +12,7 @@
 ;; Package-Requires: ((auto-complete "1.4"))
 ;; URL: https://github.com/wildsoul/plantuml-mode
 ;; Keywords: uml, ascii
-;; 
+;;
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -33,39 +33,39 @@
 ;; (require 'plantuml-mode)
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;;; Change Log:
-;; 
+;;
 ;; version 0.3, 2013-10-30 wildsoul
 ;;  Update regexp
 ;;  Indent enabled
 ;;  Auto-complete enabled
-;; 
+;;
 ;; version 0.2, 2010-09-20
 ;;   Initialize the keywords from the -language output of plantuml.jar
 ;;   instead of the hard-coded way.
 ;; version 0.1, 2010-08-25
 ;;   First version
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
 ;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
-;; 
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
-;; 
+;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;;; Code:
 
 (require 'thingatpt)
@@ -162,7 +162,7 @@
             "\\|\\<\\(note\s+over\\|\\(?:end\s+note\\|note\s+\\(\\(?:\
 \\(?:buttom\\|left\\|right\\|top\\)\\)\\)\\(?:\s+of\\)?\\)\\)\\>\\|\
 \\<\\(\\(left\\|center\\|right\\)\s+\\(header\\|footer\\)\\)\\>\\)" ))
-  
+
   (defvar plantuml-keywords-regexp
     (concat "^\\s *"
             (regexp-opt plantuml-keywords 'words)
@@ -190,7 +190,7 @@
   (beginning-of-line)
   (if (bobp)
       (indent-line-to 0)
-    (let ((not-indented t) cur-indent var-indent) 
+    (let ((not-indented t) cur-indent var-indent)
       (if (looking-at plantuml-indent-regexp-end)
           (progn
             (save-excursion
@@ -201,11 +201,11 @@
                                    plantuml-indent-offset))))
             (if (< cur-indent 0)
                 (setq cur-indent 0)))
-        (save-excursion 
+        (save-excursion
           (while not-indented
             (forward-line -1)
-              (cond 
-                ((looking-at plantuml-indent-regexp-start) 
+              (cond
+                ((looking-at plantuml-indent-regexp-start)
                     (setq cur-indent (+ (current-indentation)
                                         plantuml-indent-offset)
                           not-indented nil))
@@ -227,7 +227,7 @@
                                      0
                                      (current-line-string)))
                              (current-line-string))) 0)
-                   (setq cur-indent  var-indent 
+                   (setq cur-indent  var-indent
                          not-indented nil))))
                 ((progn (forward-line 1)
                         (setq var-indent
@@ -272,7 +272,7 @@ This affects only the current buffer."
 
 
 
-;;; setup 
+;;; setup
 (add-hook 'plantuml-mode-hook 'ac-plantuml-setup)
 (add-to-list 'auto-mode-alist '("\\.plu$" . plantuml-mode))
 
